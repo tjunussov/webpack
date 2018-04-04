@@ -189,7 +189,9 @@ module.exports = {
     'test/unit/specs/index.js': "unit && runner === 'karma'",
     'test/unit/setup.js': "unit && runner === 'jest'",
     'test/e2e/**/*': 'e2e',
-    'src/router/**/*': 'router',
+    'src/services/**/*': 'axios',
+    'src/store/api/**/*': 'axios',
+    'src/router.js': 'router',
   },
   complete: function(data, { chalk }) {
     const green = chalk.green

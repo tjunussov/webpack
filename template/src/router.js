@@ -1,18 +1,25 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+import Foo from '@/components/Foo'
+import Bar from '@/components/Bar'
 
 Vue.use(Router)
 
 const router =  new Router({
   routes: [
     {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld,
+      path: '/foo',
+      alias: '/',
+      name: 'Foo',
+      component: Foo,
       meta: { isPublic: true }
     },
-    // { path: '*', redirect: '/' }
+    {
+      path: '/bar',
+      name: 'Bar',
+      component: Bar
+    },
+    { path: '*', redirect: '/foo' }
   ],
   linkActiveClass : 'active',
   onError(e){

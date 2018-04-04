@@ -2,50 +2,48 @@
 doctype html
 
 #app
-  header.header.clearfix
-    b-container
-      b-navbar(toggleable="md")
 
-        b-nav-toggle(target="nav_collapse")
+  b-navbar(toggleable="md" fixed="top" type="dark" variant="dark")
 
-        b-navbar-brand(to="/home")
-          i.fa.fa-building.text-muted
+    b-nav-toggle(target="nav_collapse")
 
-        b-collapse(is-nav id="nav_collapse")
+    b-navbar-brand(to="/")
+      img.mr-2(src="./assets/logo.png" height="28")
+      | APP
 
-              b-dropdown-divider
-              b-dropdown-item(to="/link3") 
-                .fa.fa-gear.mr-1/  Settings
+    b-collapse(is-nav id="nav_collapse" v-if="authUser")
 
-          b-navbar-nav.ml-auto
+      b-nav(is-nav-bar)
+        b-nav-item(to="/foo") Foo
+        b-nav-item(to="/bar") Bar
 
+        b-button.ml-3 Button
 
-            b-nav-item(to="/link1" v-b-tooltip.hover.auto title="Касса")
-              .fa.fa-calculator.mr-1
+      b-nav.ml-auto(is-nav-bar)
 
-            b-nav-item(to="/link2" v-b-tooltip.hover.auto title="История платежей")
-              .fa.fa-list.mr-1
+        b-nav-form
+          b-form-input.mr-sm-2(size="sm" placeholder="Search  ...")
 
-            b-nav-item-dropdown(right)
-              template(slot="button-content")
-                .fa.fa-user.mr-2.text-success
-                span Username
-              b-dropdown-item(to="/profile") Профиль
-              b-dropdown-divider
-              b-dropdown-header Войти как
-              b-dropdown-divider
-              b-dropdown-item(to="/logout") Выйти
+        b-nav-item(right to="/help") Help
 
-  main(role='main')
-    b-container
-      //- keep-alive
-      router-view
+        b-nav-item-dropdown(right v-if="authUser" id="loginPopover")
+          template(slot="button-content")
+            span(:title="authUser.email") {{authUser.firstName}}
+          b-dropdown-item(to="/profile") Profile
+          b-dropdown-item(@click="logout()")
+            span.i.fa.fa-exit.mr-1
+            | Signout
+
+        b-nav-item(right id="loginPopover" v-else) Login
+          
+        b-nav-item-dropdown(right v-if="authUser")
+          template(slot="button-content")
+            span.i.fa.fa-home.mr-1/
+          b-dropdown-item Item
   
-  b-container.pt-1
-    footer.footer.mt-2
-      b-row 
-        b-col
-          small.text-muted &copy; 2017 Company Name.
+
+  b-container(fluid)
+    router-view
 
 </template>
 
@@ -55,7 +53,10 @@ export default {
   name: 'app',
   data(){
     return {
-      isLoginError:null,
+      authUser : {
+        email:"email@email.com",
+        firstName:"User"
+      },
       ui:{
         search:null,
         showModalLogin:false
@@ -63,7 +64,7 @@ export default {
     }
   },
   methods:{
-    test(){
+    logout(){
     }
   }
 }
@@ -78,5 +79,8 @@ export default {
   text-align center
   color #2c3e50
   margin-top 60px
+
+body
+  padding-top 3.5rem
 
 </style>

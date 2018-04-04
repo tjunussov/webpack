@@ -1,6 +1,6 @@
 <template lang="pug">
 .hello
-  h1 \{{ msg }}
+  h1 {{ msg }}
   h2 Essential Links
   ul
     li
@@ -37,7 +37,7 @@
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'Foo',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
