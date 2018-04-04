@@ -7,25 +7,30 @@ import App from './App'
 {{#router}}
 import router from './router'
 {{/router}}
-
-
+{{#bootstrap}}
 import BootstrapVue from 'bootstrap-vue'
-// import AxiosVue from './services/axios'
+{{/bootstrap}}
+{{#axios}}
+import AxiosVue from './services/axios'
+{{/axios}}
+{{#vuex}}
 // import store from './store'
 // import { sync } from 'vuex-router-sync'
-
+{{/vuex}}
+{{#bootstrap}}
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 Vue.use(BootstrapVue)
-// Vue.use(AxiosVue)
-
-Vue.config.productionTip = false
-
+{{/bootstrap}}
+{{#axios}}
+Vue.use(AxiosVue)
 
 // Mocking Service
-// import '@/store/api/mock'
+import '@/store/api/mock'
 // sync(store, router)
+{{/axios}}
 
+Vue.config.productionTip = false
 
 // Global Functions
 Vue.mixin({
