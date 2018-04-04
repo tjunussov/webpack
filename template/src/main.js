@@ -8,7 +8,48 @@ import App from './App'
 import router from './router'
 {{/router}}
 
+
+import BootstrapVue from 'bootstrap-vue'
+// import AxiosVue from './services/axios'
+// import store from './store'
+// import { sync } from 'vuex-router-sync'
+
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+Vue.use(BootstrapVue)
+// Vue.use(AxiosVue)
+
 Vue.config.productionTip = false
+
+
+// Mocking Service
+// import '@/store/api/mock'
+// sync(store, router)
+
+
+// Global Functions
+Vue.mixin({
+  methods: {
+    $resetData: function (emit) {
+      console.log('reset global data =', this.$options.name)
+      // reset data()
+      Object.assign(this.$data, this.$options.data.call(this));
+      if((emit !==null && emit) || ( emit == null)) this.$emit('reset',null) /// CAUTION! May Interefere with other local events
+    },
+    $_clone: function (val) {
+      return Object.assign({},val);
+    },
+    $: function (id) {
+      return document.querySelector(id)
+    },
+    $ArrayRemoveElement(arr,item){
+      let index = arr.indexOf(item);
+      if(index !== -1) {
+        arr.splice(index, 1);
+      }
+    }
+  }
+});
 
 /* eslint-disable no-new */
 new Vue({

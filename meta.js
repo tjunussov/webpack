@@ -74,6 +74,26 @@ module.exports = {
       type: 'confirm',
       message: 'Install vue-router?',
     },
+    vuex: {
+      when: 'isNotTest',
+      type: 'confirm',
+      message: 'Install vuex?',
+    },
+    axios: {
+      when: 'isNotTest',
+      type: 'confirm',
+      message: 'Install axios?',
+    },
+    bootstrap: {
+      when: 'isNotTest',
+      type: 'confirm',
+      message: 'Install bootstrap-vue?',
+    },
+    idb: {
+      when: 'isNotTest',
+      type: 'confirm',
+      message: 'Install vue-idb?',
+    },
     lint: {
       when: 'isNotTest',
       type: 'confirm',
