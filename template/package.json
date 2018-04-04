@@ -22,14 +22,15 @@
     {{#lint}}
     "lint": "eslint --ext .js,.vue src{{#unit}} test/unit{{/unit}}{{#e2e}} test/e2e/specs{{/e2e}}",
     {{/lint}}
-    "build": "node build/build.js"
+    "build": "node build/build.js",
+    "stats": "webpack --profile --json > stats.json --config build/webpack.prod.conf.js"
   },
   "dependencies": {
     "vue": "^2.5.2"{{#router}},
     "vue-router": "^3.0.1"{{/router}}{{#vuex}},
     "vuex": "^3.0.1"{{/vuex}}{{#axios}},
     "axios": "^0.18.0"{{/axios}}{{#bootstrap}},
-    "bootstrap-vue": "^2.0.0-rc.6",{{/bootstrap}}    
+    "bootstrap-vue": "^2.0.0-rc.6"{{/bootstrap}}    
   },
   "devDependencies": {
     {{#lint}}
