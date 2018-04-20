@@ -1,5 +1,5 @@
 // import axios from 'axios'
-import {$http} from '@/store/api/shop'
+import {$http} from '@/store/api/http'
 import MockAdapter from 'axios-mock-adapter'
 
 let mock = new MockAdapter($http,{delayResponse:500})
